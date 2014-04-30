@@ -77,8 +77,6 @@ class RegistrationFOSUser1Controller extends ContainerAware
             return $response;
         }
 
-        $this->container->get('session')->set('sonata_user_redirect_url', $this->container->get('request')->headers->get('referer'));
-
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
             'form' => $form->createView(),
         ));
