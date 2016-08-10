@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -13,12 +14,12 @@ namespace Sonata\UserBundle\Document;
 use FOS\UserBundle\Document\Group as AbstractedGroup;
 
 /**
- * Represents a Base Group Document
+ * Represents a Base Group Document.
  */
 class BaseGroup extends AbstractedGroup
 {
     /**
-     * Returns a string representation
+     * Returns a string representation.
      *
      * @return string
      */

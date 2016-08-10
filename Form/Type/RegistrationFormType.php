@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the FOSUserBundle package.
+ * This file is part of the Sonata Project package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,16 +13,19 @@ namespace Sonata\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class RegistrationFormType extends AbstractType
 {
-    private $class;
-
     /**
      * @var array
      */
     protected $mergeOptions;
+    /**
+     * @var string
+     */
+    private $class;
 
     /**
      * @param string $class        The User class name
@@ -30,10 +33,13 @@ class RegistrationFormType extends AbstractType
      */
     public function __construct($class, array $mergeOptions = array())
     {
-        $this->class        = $class;
+        $this->class = $class;
         $this->mergeOptions = $mergeOptions;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -59,16 +65,40 @@ class RegistrationFormType extends AbstractType
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @deprecated Remove it when bumping requirements to Symfony 2.7+
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $this->configureOptions($resolver);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => $this->class,
-            'intention'  => 'registration',
+            'intention' => 'registration',
         ));
     }
 
-    public function getName()
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return 'sonata_user_registration';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 }

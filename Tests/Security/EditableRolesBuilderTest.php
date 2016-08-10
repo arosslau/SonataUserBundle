@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -15,6 +15,9 @@ use Sonata\UserBundle\Security\EditableRolesBuilder;
 
 class EditableRolesBuilderTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @group legacy
+     */
     public function testRolesFromHierarchy()
     {
         $token = $this->getMock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
@@ -41,10 +44,10 @@ class EditableRolesBuilderTest extends \PHPUnit_Framework_TestCase
                 4 => 'ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT',
                 5 => 'ROLE_SONATA_PAGE_ADMIN_BLOCK_EDIT',
             ),
-            'SONATA' => array()
+            'SONATA' => array(),
         );
 
-        $expected = array (
+        $expected = array(
             'ROLE_ADMIN' => 'ROLE_ADMIN: ROLE_USER',
             'ROLE_USER' => 'ROLE_USER',
             'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN: ROLE_USER, ROLE_SONATA_ADMIN, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT, ROLE_SONATA_PAGE_ADMIN_BLOCK_EDIT',
@@ -87,7 +90,7 @@ class EditableRolesBuilderTest extends \PHPUnit_Framework_TestCase
 
         $builder = new EditableRolesBuilder($security, $pool, array());
 
-        $expected = array (
+        $expected = array(
           'ROLE_FOO_GUEST' => 'ROLE_FOO_GUEST',
           'ROLE_FOO_STAFF' => 'ROLE_FOO_STAFF',
           'ROLE_FOO_EDITOR' => 'ROLE_FOO_EDITOR',
@@ -110,11 +113,9 @@ class EditableRolesBuilderTest extends \PHPUnit_Framework_TestCase
 
         $builder = new EditableRolesBuilder($security, $pool, array());
 
-
         list($roles, $rolesReadOnly) = $builder->getRoles();
 
         $this->assertEmpty($roles);
         $this->assertEmpty($rolesReadOnly);
-
     }
 }

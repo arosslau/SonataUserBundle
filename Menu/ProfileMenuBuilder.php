@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -8,19 +9,16 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\UserBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Class ProfileMenuBuilder
+ * Class ProfileMenuBuilder.
  *
- * @package Sonata\UserBundle\Menu
  *
  * @author Hugo Briand <briand@ekino.com>
  */
@@ -49,21 +47,21 @@ class ProfileMenuBuilder
     /**
      * @param FactoryInterface         $factory
      * @param TranslatorInterface      $translator
-     * @param array                    $routes     Routes to add to the menu (format: array(array('label' => ..., 'route' => ...)))
+     * @param array                    $routes          Routes to add to the menu (format: array(array('label' => ..., 'route' => ...)))
      * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(FactoryInterface $factory, TranslatorInterface $translator, array $routes, EventDispatcherInterface $eventDispatcher)
     {
-        $this->factory         = $factory;
-        $this->translator      = $translator;
-        $this->routes          = $routes;
+        $this->factory = $factory;
+        $this->translator = $translator;
+        $this->routes = $routes;
         $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
      * @param array $itemOptions The options given to the created menuItem
      *
-     * @return \Knp\Menu\ItemInterface
+     * @return ItemInterface
      */
     public function createProfileMenu(array $itemOptions = array())
     {
@@ -75,7 +73,8 @@ class ProfileMenuBuilder
     }
 
     /**
-     * @param \Knp\Menu\ItemInterface $menu The item to fill with $routes
+     * @param ItemInterface $menu        The item to fill with $routes
+     * @param array         $itemOptions
      */
     public function buildProfileMenu(ItemInterface $menu, array $itemOptions = array())
     {

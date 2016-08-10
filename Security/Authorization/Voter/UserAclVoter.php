@@ -1,27 +1,25 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
  */
 
 namespace Sonata\UserBundle\Security\Authorization\Voter;
 
 use FOS\UserBundle\Model\UserInterface;
-
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Acl\Voter\AclVoter;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class UserAclVoter extends AclVoter
 {
-   /**
-    * {@InheritDoc}
-    */
+    /**
+     * {@inheritdoc}
+     */
     public function supportsClass($class)
     {
         // support the Object-Scope ACL

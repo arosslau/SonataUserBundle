@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -11,18 +12,18 @@
 namespace Sonata\UserBundle\Entity;
 
 use FOS\UserBundle\Doctrine\UserManager as BaseUserManager;
-use Sonata\UserBundle\Model\UserManagerInterface;
+use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
+use Sonata\UserBundle\Model\UserManagerInterface;
 
 /**
- * Class UserManager
+ * Class UserManager.
  *
- * @package Sonata\UserBundle\Entity
  *
  * @author Hugo Briand <briand@ekino.com>
  */
-class UserManager extends BaseUserManager implements UserManagerInterface
+class UserManager extends BaseUserManager implements UserManagerInterface, ManagerInterface
 {
     /**
      * {@inheritdoc}
@@ -116,7 +117,7 @@ class UserManager extends BaseUserManager implements UserManagerInterface
         $fields = $this->objectManager->getClassMetadata($this->class)->getFieldNames();
         foreach ($sort as $field => $direction) {
             if (!in_array($field, $fields)) {
-                unset($sort[$field]);
+                throw new \RuntimeException(sprintf("Invalid sort field '%s' in '%s' class", $field, $this->class));
             }
         }
         if (count($sort) == 0) {
@@ -126,19 +127,15 @@ class UserManager extends BaseUserManager implements UserManagerInterface
             $query->orderBy(sprintf('u.%s', $field), strtoupper($direction));
         }
 
-        $parameters = array();
-
         if (isset($criteria['enabled'])) {
             $query->andWhere('u.enabled = :enabled');
-            $parameters['enabled'] = $criteria['enabled'];
+            $query->setParameter('enabled', $criteria['enabled']);
         }
 
         if (isset($criteria['locked'])) {
             $query->andWhere('u.locked = :locked');
-            $parameters['locked'] = $criteria['locked'];
+            $query->setParameter('locked', $criteria['locked']);
         }
-
-        $query->setParameters($parameters);
 
         $pager = new Pager();
         $pager->setMaxPerPage($limit);

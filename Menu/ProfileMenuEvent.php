@@ -1,6 +1,7 @@
 <?php
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -8,17 +9,14 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\UserBundle\Menu;
 
 use Knp\Menu\ItemInterface;
 use Symfony\Component\EventDispatcher\Event;
 
-
 /**
- * Class ProfileMenuEvent
+ * Class ProfileMenuEvent.
  *
- * @package Sonata\UserBundle\Menu
  *
  * @author Hugo Briand <briand@ekino.com>
  */
@@ -38,7 +36,7 @@ class ProfileMenuEvent extends Event
     }
 
     /**
-     * @return \Knp\Menu\ItemInterface
+     * @return ItemInterface
      */
     public function getMenu()
     {

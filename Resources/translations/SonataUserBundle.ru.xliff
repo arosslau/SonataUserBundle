@@ -1,6 +1,6 @@
-<?xml version="1.0"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="" >
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" datatype="plaintext" original="">
         <body>
             <trans-unit id="title_user_registration">
                 <source>title_user_registration</source>
@@ -60,15 +60,19 @@
             </trans-unit>
             <trans-unit id="switch_user_exit">
                 <source>switch_user_exit</source>
-                <target>Exit impersonating mode</target>
+                <target>Выйти из режима воплощения</target>
             </trans-unit>
             <trans-unit id="switch_user">
                 <source>switch_user</source>
-                <target>Impersonate User</target>
+                <target>Воплотиться в пользователя</target>
             </trans-unit>
             <trans-unit id="user_block_logout">
                 <source>user_block_logout</source>
                 <target>Выход</target>
+            </trans-unit>
+            <trans-unit id="user_block_profile">
+                <source>user_block_profile</source>
+                <target>Профиль</target>
             </trans-unit>
             <trans-unit id="user_form.label_username">
                 <source>form.label_username</source>
@@ -130,6 +134,10 @@
                 <source>filter.label_email</source>
                 <target>E-Mail</target>
             </trans-unit>
+            <trans-unit id="filter.label_groups">
+                <source>filter.label_groups</source>
+                <target>Группы</target>
+            </trans-unit>
             <trans-unit id="filter.label_locked">
                 <source>filter.label_locked</source>
                 <target>Заблокирован</target>
@@ -176,7 +184,7 @@
             </trans-unit>
             <trans-unit id="list.label_impersonating">
                 <source>list.label_impersonating</source>
-                <target>Impersonate User</target>
+                <target>Воплотиться в пользователя</target>
             </trans-unit>
             <trans-unit id="list.label_roles">
                 <source>list.label_roles</source>
@@ -192,15 +200,15 @@
             </trans-unit>
             <trans-unit id="label_two_step_code">
                 <source>label_two_step_code</source>
-                <target>Ключ двухэтапной аутентификации</target>
+                <target>Код двухэтапной аутентификации</target>
             </trans-unit>
             <trans-unit id="message_two_step_code_help">
                 <source>message_two_step_code_help</source>
-                <target>message_two_step_code_help</target>
+                <target>Введите проверочный код, сгенерированный вашим мобильным приложением</target>
             </trans-unit>
             <trans-unit id="label_two_step_code_error">
                 <source>label_two_step_code_error</source>
-                <target>label_two_step_code_error</target>
+                <target>Неправильный код</target>
             </trans-unit>
             <trans-unit id="sonata_user">
                 <source>sonata_user</source>
@@ -284,7 +292,7 @@
             </trans-unit>
             <trans-unit id="form.label_two_step_verification_code">
                 <source>form.label_two_step_verification_code</source>
-                <target>Ключ двухэтапной аутентификации</target>
+                <target>Код двухэтапной аутентификации</target>
             </trans-unit>
             <trans-unit id="show.label_username">
                 <source>show.label_username</source>
@@ -364,7 +372,7 @@
             </trans-unit>
             <trans-unit id="show.label_two_step_verification_code">
                 <source>show.label_two_step_verification_code</source>
-                <target>Ключ двухэтапной аутентификации</target>
+                <target>Код двухэтапной аутентификации</target>
             </trans-unit>
             <trans-unit id="form.label_date_of_birth">
                 <source>form.label_date_of_birth</source>
@@ -400,11 +408,11 @@
             </trans-unit>
             <trans-unit id="title_user_edit_authentication">
                 <source>title_user_edit_authentication</source>
-                <target>title_user_edit_authentication</target>
+                <target>Аутентификация</target>
             </trans-unit>
             <trans-unit id="link_edit_authentication">
                 <source>link_edit_authentication</source>
-                <target>link_edit_authentication</target>
+                <target>Аутентификация</target>
             </trans-unit>
             <trans-unit id="label_profile_gender">
                 <source>label_profile_gender</source>
@@ -472,11 +480,11 @@
             </trans-unit>
             <trans-unit id="sonata_user_profile_breadcrumb_index">
                 <source>sonata_user_profile_breadcrumb_index</source>
-                <target>sonata_user_profile_breadcrumb_index</target>
+                <target>Главная страница</target>
             </trans-unit>
             <trans-unit id="sonata_user_profile_breadcrumb_edit">
                 <source>sonata_user_profile_breadcrumb_edit</source>
-                <target>sonata_user_profile_breadcrumb_edit</target>
+                <target>Редактировать профиль</target>
             </trans-unit>
             <trans-unit id="sonata_user_already_authenticated">
                 <source>sonata_user_already_authenticated</source>
@@ -505,6 +513,18 @@
             <trans-unit id="form.password_confirmation">
                 <source>form.password_confirmation</source>
                 <target>Подтверждение пароля</target>
+            </trans-unit>
+            <trans-unit id="title_user_edit_password">
+                <source>title_user_edit_password</source>
+                <target>Изменение пароля</target>
+            </trans-unit>
+            <trans-unit id="title_user_resetting">
+                <source>title_user_resetting</source>
+                <target>Запрос пароля</target>
+            </trans-unit>
+            <trans-unit id="title_user_resetting_reset">
+                <source>title_user_resetting_reset</source>
+                <target>Сброс пароля</target>
             </trans-unit>
         </body>
     </file>

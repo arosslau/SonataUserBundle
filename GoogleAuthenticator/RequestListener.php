@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -11,24 +11,33 @@
 
 namespace Sonata\UserBundle\GoogleAuthenticator;
 
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\HttpKernel\HttpKernel;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\HttpKernel;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class RequestListener
 {
+    /**
+     * @var Helper
+     */
     protected $helper;
 
+    /**
+     * @var SecurityContextInterface
+     */
     protected $securityContext;
 
+    /**
+     * @var EngineInterface
+     */
     protected $templating;
 
     /**
-     * @param Helper                                                     $helper
-     * @param \Symfony\Component\Security\Core\SecurityContextInterface  $securityContext
-     * @param \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface $templating
+     * @param Helper                   $helper
+     * @param SecurityContextInterface $securityContext
+     * @param EngineInterface          $templating
      */
     public function __construct(Helper $helper, SecurityContextInterface $securityContext, EngineInterface $templating)
     {
@@ -38,15 +47,14 @@ class RequestListener
     }
 
     /**
-     * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
-     * @return
+     * @param GetResponseEvent $event
      */
     public function onCoreRequest(GetResponseEvent $event)
     {
         if (HttpKernel::MASTER_REQUEST != $event->getRequestType()) {
             return;
         }
-    
+
         $token = $this->securityContext->getToken();
 
         if (!$token) {
@@ -57,10 +65,10 @@ class RequestListener
             return;
         }
 
-        $key     = $this->helper->getSessionKey($this->securityContext->getToken());
+        $key = $this->helper->getSessionKey($this->securityContext->getToken());
         $request = $event->getRequest();
         $session = $event->getRequest()->getSession();
-        $user    = $this->securityContext->getToken()->getUser();
+        $user = $this->securityContext->getToken()->getUser();
 
         if (!$session->has($key)) {
             return;
@@ -82,7 +90,7 @@ class RequestListener
         }
 
         $event->setResponse($this->templating->renderResponse('SonataUserBundle:Admin:Security/two_step_form.html.twig', array(
-            'state' => $state
+            'state' => $state,
          )));
     }
 }

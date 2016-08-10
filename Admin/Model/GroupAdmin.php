@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -11,15 +11,18 @@
 
 namespace Sonata\UserBundle\Admin\Model;
 
-use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
 
-class GroupAdmin extends Admin
+class GroupAdmin extends AbstractAdmin
 {
+    /**
+     * {@inheritdoc}
+     */
     protected $formOptions = array(
-        'validation_groups' => 'Registration'
+        'validation_groups' => 'Registration',
     );
 
     /**
@@ -59,12 +62,20 @@ class GroupAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('roles', 'sonata_security_roles', array(
-                'expanded' => true,
-                'multiple' => true,
-                'required' => false
-            ))
+            ->tab('Group')
+                ->with('General', array('class' => 'col-md-6'))
+                    ->add('name')
+                ->end()
+            ->end()
+            ->tab('Security')
+                ->with('Roles', array('class' => 'col-md-12'))
+                    ->add('roles', 'sonata_security_roles', array(
+                        'expanded' => true,
+                        'multiple' => true,
+                        'required' => false,
+                    ))
+                ->end()
+            ->end()
         ;
     }
 }
